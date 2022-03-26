@@ -2,14 +2,9 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('EMAIL_USER') }}
-            {{ Form::text('EMAIL_USER', $user->EMAIL_USER, ['class' => 'form-control' . ($errors->has('EMAIL_USER') ? ' is-invalid' : ''), 'placeholder' => 'Email User']) }}
-            {!! $errors->first('EMAIL_USER', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('PASSWORD_USER') }}
-            {{ Form::text('PASSWORD_USER', $user->PASSWORD_USER, ['class' => 'form-control' . ($errors->has('PASSWORD_USER') ? ' is-invalid' : ''), 'placeholder' => 'Password User']) }}
-            {!! $errors->first('PASSWORD_USER', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('email') }}
+            {{ Form::text('email', $user->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email']) }}
+            {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('ID_ROL_FK') }}

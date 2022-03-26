@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    User
+    Healthy Indicator
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User') }}
+                                {{ __('Healthy Indicator') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('healthy-indicators.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,24 +36,22 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Email</th>
-										<th>Id Rol Fk</th>
+										<th>Name Healthy Indicators</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($healthyIndicators as $healthyIndicator)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->ID_ROL_FK }}</td>
+											<td>{{ $healthyIndicator->NAME_HEALTHY_INDICATORS }}</td>
 
                                             <td>
-                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('healthy-indicators.destroy',$healthyIndicator->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('healthy-indicators.show',$healthyIndicator->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('healthy-indicators.edit',$healthyIndicator->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -66,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $users->links() !!}
+                {!! $healthyIndicators->links() !!}
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $user->name ?? 'Show User' }}
+    {{ $healthyIndicator->name ?? 'Show Healthy Indicator' }}
 @endsection
 
 @section('content')
@@ -11,22 +11,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show User</span>
+                            <span class="card-title">Show Healthy Indicator</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('healthy-indicators.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Email:</strong>
-                            {{ $user->email }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Id Rol Fk:</strong>
-                            {{ $user->ID_ROL_FK }}
+                            <strong>Name Healthy Indicators:</strong>
+                            {{ $healthyIndicator->NAME_HEALTHY_INDICATORS }}
                         </div>
 
                     </div>
