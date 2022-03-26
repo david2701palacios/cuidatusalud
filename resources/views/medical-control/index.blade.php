@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    User
+    Medical Control
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('User') }}
+                                {{ __('Medical Control') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('medical-controls.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,24 +36,30 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Email</th>
-										<th>Id Rol Fk</th>
+										<th>Name Doctor</th>
+										<th>Rol Doctor</th>
+										<th>Date Control</th>
+										<th>Observations</th>
+										<th>Id Person Fk</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($medicalControls as $medicalControl)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->ID_ROL_FK }}</td>
+											<td>{{ $medicalControl->NAME_DOCTOR }}</td>
+											<td>{{ $medicalControl->ROL_DOCTOR }}</td>
+											<td>{{ $medicalControl->DATE_CONTROL }}</td>
+											<td>{{ $medicalControl->OBSERVATIONS }}</td>
+											<td>{{ $medicalControl->ID_PERSON_FK }}</td>
 
                                             <td>
-                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('medical-controls.destroy',$medicalControl->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('medical-controls.show',$medicalControl->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('medical-controls.edit',$medicalControl->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -66,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $users->links() !!}
+                {!! $medicalControls->links() !!}
             </div>
         </div>
     </div>

@@ -13,8 +13,21 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    {{ sizeof(Auth::user()->persons) }}
+                    @if (sizeof(Auth::user()->persons)==0)
+                    <div class="alert alert-success" role="alert">
+                        ¡Hola! Para conocerte mejor necesitamos que actualices tu información personal.
+                        <div class="mb-3"></div>
+                             <div class="float-right">
+                                <a href="{{ route('people.create') }}" class="btn btn-light btn-sm float-right"  data-placement="left">
+                                  {{ __('Completar perfil') }}
+                                </a>
+                             </div>
+                     </div>
+                    </div>
+                    @else
+                        Hola {{ Auth::user()->persons[0]->NAME_PERSON}}
+                    @endif
                 </div>
             </div>
         </div>

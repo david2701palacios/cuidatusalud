@@ -2,29 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 /**
  * Class User
  *
  * @property $id
- * @property $EMAIL_USER
- * @property $email_verified_at
- * @property $PASSWORD_USER
+ * @property $email
+ * @property $password
  * @property $ID_ROL_FK
+ * @property $email_verified_at
  * @property $remember_token
  * @property $created_at
  * @property $updated_at
  *
+ * @property Person[] $persons
+ * @property Role $role
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model
+class User extends Authenticatable
 {
+
+   
+    use Notifiable;
     
     static $rules = [
-		'EMAIL_USER' => 'required',
-		'PASSWORD_USER' => 'required',
+		'email' => 'required',
 		'ID_ROL_FK' => 'required',
     ];
 
@@ -35,8 +40,36 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['EMAIL_USER','PASSWORD_USER','ID_ROL_FK'];
+    protected $fillable = ['email','password','ID_ROL_FK'];
 
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function persons()
+    {
+        return $this->hasMany('App\Models\Person', 'ID_USER_FK', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function role()
+    {
+        return $this->hasOne('App\Models\Role', 'id', 'ID_ROL_FK');
+    }
+    
 
 }
