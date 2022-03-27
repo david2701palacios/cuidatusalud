@@ -1,13 +1,14 @@
 <template>
-    <section>
-        <h2 class="my-9 ml-5">Familia</h2>
-        <users-table />
-    </section>
+    <BasicPageTemplate title="Familia">
+        <UsersTable/>
+    </BasicPageTemplate>
 </template>
 <script>
+import BasicPageTemplate from "@/templates/BasicPageTemplate";
 import UsersTable from "@/components/tables/UsersTable";
+
 export default {
     name: 'FamilyPage',
-    components: {UsersTable}
+    components: {BasicPageTemplate, UsersTable}
 }
 </script>
