@@ -5,7 +5,17 @@
             :items="users"
             :items-per-page="5"
             class="elevation-1"
-        ></v-data-table>
+            :search="search"
+            :custom-filter="filterOnlyCapsText"
+        >
+            <template v-slot:top>
+                <v-text-field
+                    v-model="search"
+                    label="Buscar"
+                    class="mx-4"
+                ></v-text-field>
+            </template>
+        </v-data-table>
     </section>
 </template>
 <script>
@@ -13,6 +23,7 @@ export default {
     name: 'UsersTable',
     data() {
         return {
+            search: '',
             headers: [
                 {
                     text: 'Nombre',
@@ -50,6 +61,14 @@ export default {
                 },
             ],
         }
+    },
+    methods: {
+        filterOnlyCapsText(value, search) {
+            return value &&
+                search &&
+                typeof value === 'string' &&
+                value.toString().toLowerCase().includes(search.toLowerCase())
+        },
     },
 }
 </script>
