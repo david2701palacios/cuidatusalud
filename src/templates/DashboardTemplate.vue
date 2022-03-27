@@ -1,32 +1,44 @@
 <template>
     <v-app id="inspire">
-        <v-navigation-drawer
-            v-model="drawer"
-            app
+        <v-app-bar
+            elevation="2"
+            color="#fff"
+            dark
+            src="https://picsum.photos/1920/1080?random"
         >
-            <v-sheet
-                color="grey lighten-4"
-                class="pa-4"
-            >
-                <v-avatar
-                    class="mb-4"
-                    color="grey darken-1"
-                    size="64"
-                >
-                    <span class="white--text text-h5">OA</span>
-                </v-avatar>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-toolbar-title class="text-shadow">Cuida tu salud</v-toolbar-title>
+        </v-app-bar>
+        <v-navigation-drawer
+            app
+            v-model="drawer"
+            :permanent="$vuetify.breakpoint.smAndUp"
+            :mini-variant.sync="mini"
+        >
+            <v-list-item class="px-2">
+                <v-list-item-avatar>
+                    <v-img src="https://randomuser.me/api/portraits/men/15.jpg"></v-img>
+                </v-list-item-avatar>
 
-                <div>{{ email }}</div>
-            </v-sheet>
+                <v-list-item-title>Oscar Amado</v-list-item-title>
+
+                <v-btn
+                    icon
+                    @click.stop="mini = !mini"
+                >
+                    <v-icon>{{ mini ? 'mdi-chevron-right' : 'mdi-chevron-left' }}</v-icon>
+                </v-btn>
+            </v-list-item>
+
 
             <v-divider></v-divider>
 
             <v-list>
                 <v-list-item
-                    v-for="[icon, text, href] in links"
+                    v-for="[icon, text, routeName] in links"
                     :key="icon"
                     link
-                    @click="redirect(`/tablero/${href}`)"
+                    @click="redirect(routeName)"
                 >
                     <v-list-item-icon>
                         <v-icon>{{ icon }}</v-icon>
@@ -40,7 +52,7 @@
             <v-divider></v-divider>
             <v-list-item
                 link
-                @click="redirect('/ingresar')"
+                @click="redirect('login')"
             >
                 <v-list-item-icon>
                     <v-icon>mdi-logout</v-icon>
@@ -53,7 +65,7 @@
 
         </v-navigation-drawer>
 
-        <v-main class="pt-10">
+        <v-main>
             <router-view></router-view>
         </v-main>
     </v-app>
@@ -63,19 +75,26 @@
 export default {
     name: 'DashboardPage',
     methods: {
-        redirect(path) {
-            this.$router.push({path})
-        }
+        redirect(routeName) {
+            this.$router.push({name: routeName})
+        },
     },
     data: () => ({
         email: 'oscarfamado@gmail.com',
         cards: ['Today', 'Yesterday'],
         drawer: true,
+        mini: false,
         links: [
-            ['mdi-heart-pulse', 'Salud', 'salud'],
-            ['mdi-file-chart', 'Reportes', 'reportes'],
-            ['mdi-account-multiple', 'Familia', 'familia'],
+            ['mdi-calendar', 'Calendario', 'calendar'],
+            ['mdi-heart-pulse', 'Salud', 'health'],
+            ['mdi-file-chart', 'Reportes', 'reports'],
+            ['mdi-account-multiple', 'Familia', 'family'],
         ],
     })
 };
 </script>
+<style scoped>
+.text-shadow {
+    text-shadow: 0 0 5px #000000e6;
+}
+</style>
