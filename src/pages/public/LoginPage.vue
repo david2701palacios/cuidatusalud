@@ -3,7 +3,7 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout align-center justify-center>
-                    <v-flex xs12 sm8 md4>
+                    <v-flex xs12 sm8 md3>
                         <v-card class="elevation-1">
                             <v-toolbar dark color="primary">
                                 <v-toolbar-title>Ingresar</v-toolbar-title>
@@ -12,11 +12,9 @@
                                 <login-form/>
                             </v-card-text>
                             <v-card-actions>
-                                <a class="ml-3" @click="redirect('/registrarme')">Registrarme</a>
-
+                                <a class="ml-3" @click="redirect('register')">Registrarme</a>
                                 <v-spacer></v-spacer>
-
-                                <v-btn color="primary" @click="redirect('/tablero')">Ingresar</v-btn>
+                                <v-btn color="primary" @click="redirect('calendar')">Ingresar</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -33,8 +31,8 @@ export default {
     name: 'LoginPage',
     components: {LoginForm},
     methods: {
-        redirect(path) {
-            this.$router.push({path})
+        redirect(routeName) {
+            this.$router.push({name: routeName})
         }
     }
 };
