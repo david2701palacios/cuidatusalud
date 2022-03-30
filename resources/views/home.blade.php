@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -13,7 +12,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ sizeof(Auth::user()->persons) }}
                     @if (sizeof(Auth::user()->persons)==0)
                     <div class="alert alert-success" role="alert">
                         ¡Hola! Para conocerte mejor necesitamos que actualices tu información personal.
@@ -32,5 +30,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @endsection
